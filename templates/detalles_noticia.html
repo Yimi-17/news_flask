@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Noticia - Tu Aplicación de Noticias</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Detalles de Noticia</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="http://127.0.0.1:5000/noticias">Noticias</a></li>
+                <!-- Agrega más enlaces de navegación si es necesario -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <h2>{{ noticia['Título'] }}</h2>
+            <p>{{ noticia['Descripción'] }}</p>
+            <p>Categoría: {{ noticia['Categoría'] }}</p>
+            <p>Fuente: {{ noticia['Fuente'] }}</p>
+            <p>Fecha: {{ noticia['Fecha'] }}</p>
+            <a href="{{ noticia['URL de la noticia'] }}" target="_blank">Leer más</a>
+            <img src="{{ noticia['URL de la imagen'] }}" alt="{{ noticia['Título'] }}">
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Tu Aplicación de Noticias</p>
+    </footer>
+</body>
+</html>

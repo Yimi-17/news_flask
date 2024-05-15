@@ -1,30 +1,19 @@
-from flask import Flask, jsonify
-import gspread
-from google.oauth2.service_account import Credentials as ServiceAccountCredentials
-from google.auth import _service_account_info
-from google.oauth2 import service_account
+from flask import Flask, render_template
+from flask_cors import CORS
+from config import Config
+from routes.routes import routes  # Importa el blueprint correctamente
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
-def connect_to_google_sheets():
-    scope = ['https://spreadsheets.google.com/feeds',
-         'https://www.googleapis.com/auth/drive']
-    credentials = service_account.Credentials.from_service_account_file(
-        'dblosandes-e90932558c9c.json', scopes=scope)
-    client = gspread.authorize(credentials)
-    return client
+# Configuración de Flask-CORS para permitir solicitudes desde cualquier origen durante el desarrollo
+CORS(app)
 
-def get_data_from_google_sheets():
-    client = connect_to_google_sheets()
-    sheet = client.open('dblosandes').worksheet('MainV2')  # Reemplaza 'Nombre de tu hoja de cálculo' por el nombre real de tu hoja
-    data = sheet.get_all_records()  # Esto recuperará todos los datos de la hoja
-    return data
+# Registro de las rutas
+app.register_blueprint(routes)
 
-@app.route('/api/noticias')
-def obtener_noticias():
-    noticias = get_data_from_google_sheets()
-    return jsonify(noticias)
+def mostrar_pagina_noticias():
+    return render_template('noticias.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
-
