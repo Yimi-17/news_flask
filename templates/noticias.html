@@ -11,7 +11,8 @@
         <h1>Noticias</h1>
         <nav>
             <ul>
-                <li><a href="/templates/index.html">Inicio</a></li>
+                <li><a href="/">Inicio</a></li>
+                <!-- <li><a href="/templates/index.html">Inicio</a></li> -->
                 <!-- Agrega más enlaces de navegación si es necesario -->
             </ul>
         </nav>
@@ -20,6 +21,10 @@
     <main>
         <section>
             <h2>Todas las Noticias</h2>
+            <div>
+                <input type="text" id="search-input" placeholder="Buscar noticias">
+                <button id="search-button">Buscar</button>
+            </div>
             <ul id="todas-noticias">
                 <!-- Aquí se mostrarán todas las noticias -->
             </ul>

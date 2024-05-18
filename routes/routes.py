@@ -47,7 +47,7 @@ def buscar_noticias():
 
     if keyword:
         noticias = get_data_from_google_sheets()
-        noticias_filtradas = [noticia for noticia in noticias if keyword.lower() in noticia['Titulo'].lower() or keyword.lower() in noticia['Descripcion'].lower()]
+        noticias_filtradas = [noticia for noticia in noticias if keyword.lower() in noticia['Título'].lower() or keyword.lower() in noticia['Descripción'].lower()]
         return jsonify(noticias_filtradas)
     else:
         return "Especifica una palabra clave en el parámetro 'keyword'"
