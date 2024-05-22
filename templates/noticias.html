@@ -5,36 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias - Tu Aplicación de Noticias</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-beta3/css/bootstrap.min.css"> -->
+
 </head>
 <body>
-    <header>
-        <h1>Noticias</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Inicio</a></li>
-                <!-- <li><a href="/templates/index.html">Inicio</a></li> -->
-                <!-- Agrega más enlaces de navegación si es necesario -->
-            </ul>
-        </nav>
+    <header class="bg-primary text-white py-3">
+        <div class="container">
+            <h1>Noticias</h1>
+            <nav>
+                <ul class="nav justify-content-center">
+                    <li class="nav-item"><a class="nav-link text-white" href="/">Inicio</a></li>
+                    <!-- Agrega más enlaces de navegación si es necesario -->
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
+    <main class="container mt-4">
         <section>
             <h2>Todas las Noticias</h2>
-            <div>
-                <input type="text" id="search-input" placeholder="Buscar noticias">
-                <button id="search-button">Buscar</button>
+            <div class="input-group mb-3">
+                <input type="text" id="search-input" class="form-control" placeholder="Buscar noticias">
+                <div class="input-group-append">
+                    <button id="search-button" class="btn btn-primary" type="button">Buscar</button>
+                </div>
             </div>
-            <ul id="todas-noticias">
+            <div class="row" id="todas-noticias">
                 <!-- Aquí se mostrarán todas las noticias -->
-            </ul>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Tu Aplicación de Noticias</p>
+    <footer class="bg-dark text-white py-3 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2024 Tu Aplicación de Noticias</p>
+        </div>
     </footer>
 
     <script src="/static/js/script.js"></script>
+    <!-- Incluye Bootstrap JavaScript y Popper.js -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-beta3/js/bootstrap.bundle.min.js"></script> -->
+
 </body>
 </html>

@@ -2,27 +2,34 @@
 async function cargarNoticias() {
     try {
         const response = await fetch('/api/noticias'); // Corrige la URL aquí
-        //const response = await fetch('http://localhost:5000/api/noticias');
         if (!response.ok) {
             throw new Error('La solicitud a /api/noticias falló');
         }
         const data = await response.json();
-        
+
         const listaNoticias = document.getElementById('todas-noticias'); // Asigna el ID correcto aquí
         if (!listaNoticias) {
-            throw new Error('No se encontró el elemento con ID "noticias"');
+            throw new Error('No se encontró el elemento con ID "todas-noticias"');
         }
         listaNoticias.innerHTML = ''; // Limpiar contenido existente
 
         data.forEach(noticia => {
-            const item = document.createElement('li');
+            const item = document.createElement('div');
+            item.classList.add('col-md-4', 'mb-4'); // Añadir clases de Bootstrap para el diseño de columnas
             item.innerHTML = `
-                <h3>${noticia['Título']}</h3>
-                <p>${noticia['Descripción']}</p>
-                <p>Categoría: ${noticia['Categoría']}</p>
-                <p>Fecha: ${noticia['Fecha']}</p>
-                <img src="${noticia['URL de la imagen']}" alt="Imagen de la noticia">
-                <a href="${noticia['URL de la noticia']}" target="_blank">Ver más</a>
+                <div class="card h-100">
+                    <img src="${noticia['URL de la imagen']}" class="card-img-top" alt="Imagen de la noticia">
+                    <div class="card-body">
+                        <h5 class="card-title">${noticia['Título']}</h5>
+                        <p class="card-text">${noticia['Descripción']}</p>
+                        <p class="card-text"><small class="text-muted">Categoría: ${noticia['Categoría']}</small></p>
+                        <p class="card-text"><small class="text-muted">Fecha: ${noticia['Fecha']}</small></p>
+                        <p class="card-text"><small class="text-muted">Fuente: ${noticia['Fuente']}</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="${noticia['URL de la noticia']}" class="btn btn-primary" target="_blank">Ver más</a>
+                    </div>
+                </div>
             `;
             listaNoticias.appendChild(item);
         });
@@ -34,28 +41,32 @@ async function cargarNoticias() {
 // Función para cargar las últimas noticias de la fecha más reciente
 async function cargarUltimasNoticiasFechaMasReciente() {
     try {
-       
         const response = await fetch('/api/noticias/ultima-fecha');
-        //const response = await fetch('http://localhost:5000/api/noticias/ultima-fecha');
         if (!response.ok) {
             throw new Error('La solicitud a /api/noticias/ultima-fecha falló');
         }
         const noticias = await response.json();
-        
-        // Limpiar la lista de noticias
+
         const listaNoticias = document.getElementById('ultimas-noticias-fecha-mas-reciente');
         listaNoticias.innerHTML = ''; // Limpiar contenido existente
 
-        // Procesar las noticias obtenidas
         noticias.forEach(noticia => {
-            const item = document.createElement('li');
+            const item = document.createElement('div');
+            item.classList.add('col-md-4', 'mb-4'); // Añadir clases de Bootstrap para el diseño de columnas
             item.innerHTML = `
-                <h3>${noticia['Título']}</h3>
-                <p>${noticia['Descripción']}</p>
-                <p>Categoría: ${noticia['Categoría']}</p>
-                <p>Fecha: ${noticia['Fecha']}</p>
-                <img src="${noticia['URL de la imagen']}" alt="Imagen de la noticia">
-                <a href="${noticia['URL de la noticia']}" target="_blank">Ver más</a>
+                <div class="card h-100">
+                    <img src="${noticia['URL de la imagen']}" class="card-img-top" alt="Imagen de la noticia">
+                    <div class="card-body">
+                        <h5 class="card-title">${noticia['Título']}</h5>
+                        <p class="card-text">${noticia['Descripción']}</p>
+                        <p class="card-text"><small class="text-muted">Categoría: ${noticia['Categoría']}</small></p>
+                        <p class="card-text"><small class="text-muted">Fecha: ${noticia['Fecha']}</small></p>
+                        <p class="card-text"><small class="text-muted">Fuente: ${noticia['Fuente']}</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="${noticia['URL de la noticia']}" class="btn btn-primary" target="_blank">Ver más</a>
+                    </div>
+                </div>
             `;
             listaNoticias.appendChild(item);
         });
@@ -65,7 +76,7 @@ async function cargarUltimasNoticiasFechaMasReciente() {
     }
 }
 
-
+// Función para buscar noticias por palabra clave
 async function buscarNoticias() {
     const keyword = document.getElementById('search-input').value.trim(); // Obtener la palabra clave ingresada por el usuario
 
@@ -80,14 +91,22 @@ async function buscarNoticias() {
         listaNoticias.innerHTML = ''; // Limpiar contenido existente
 
         noticias.forEach(noticia => {
-            const item = document.createElement('li');
+            const item = document.createElement('div');
+            item.classList.add('col-md-4', 'mb-4'); // Añadir clases de Bootstrap para el diseño de columnas
             item.innerHTML = `
-                <h3>${noticia['Título']}</h3>
-                <p>${noticia['Descripción']}</p>
-                <p>Categoría: ${noticia['Categoría']}</p>
-                <p>Fecha: ${noticia['Fecha']}</p>
-                <img src="${noticia['URL de la imagen']}" alt="Imagen de la noticia">
-                <a href="${noticia['URL de la noticia']}" target="_blank">Ver más</a>
+                <div class="card h-100">
+                    <img src="${noticia['URL de la imagen']}" class="card-img-top" alt="Imagen de la noticia">
+                    <div class="card-body">
+                        <h5 class="card-title">${noticia['Título']}</h5>
+                        <p class="card-text">${noticia['Descripción']}</p>
+                        <p class="card-text"><small class="text-muted">Categoría: ${noticia['Categoría']}</small></p>
+                        <p class="card-text"><small class="text-muted">Fecha: ${noticia['Fecha']}</small></p>
+                        <p class="card-text"><small class="text-muted">Fuente: ${noticia['Fuente']}</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="${noticia['URL de la noticia']}" class="btn btn-primary" target="_blank">Ver más</a>
+                    </div>
+                </div>
             `;
             listaNoticias.appendChild(item);
         });
@@ -96,16 +115,10 @@ async function buscarNoticias() {
     }
 }
 
-
-
+// Asociar las funciones a los eventos de carga de la página y clic del botón de búsqueda
 window.onload = () => {
     cargarNoticias();
     cargarUltimasNoticiasFechaMasReciente();
-    // Asociar la función de búsqueda al evento 'click' del botón de búsqueda
     const botonBuscar = document.getElementById('search-button');
     botonBuscar.addEventListener('click', buscarNoticias);
-
 };
-
-
-
